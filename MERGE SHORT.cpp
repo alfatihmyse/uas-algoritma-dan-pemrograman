@@ -13,6 +13,13 @@ struct Pesanan {
     string lokasi_tujuan;
     string waktu_pemesanan;
 
+    // Konstruktor default
+    Pesanan() : id_pesanan(""), lokasi_pengambilan(""), lokasi_tujuan(""), waktu_pemesanan("") {}
+
+    // Konstruktor untuk memudahkan pembuatan objek Pesanan
+    Pesanan(string id, string lokasi_ambil, string lokasi_tujuan, string waktu)
+        : id_pesanan(id), lokasi_pengambilan(lokasi_ambil), lokasi_tujuan(lokasi_tujuan), waktu_pemesanan(waktu) {}
+
     // Fungsi untuk mengonversi waktu pemesanan ke time_t agar bisa diurutkan
     time_t waktu_to_time_t() const {
         struct tm tm = {0};  // Inisialisasi struktur tm menjadi nol
@@ -97,13 +104,12 @@ int main() {
     cout << "Nama: Muhamad Alfatih\n";
     cout << "NIM: 201011402109\n\n";
 
-    // Data pesanan yang akan diurutkan
-    vector<Pesanan> pesanan = {
-        {"001", "Jakarta", "Bandung", "2025-01-05 14:30:00"},
-        {"002", "Surabaya", "Malang", "2025-01-05 13:00:00"},
-        {"003", "Medan", "Padang", "2025-01-05 15:00:00"},
-        {"004", "Yogyakarta", "Solo", "2025-01-05 12:00:00"}
-    };
+    // Data pesanan yang akan diurutkan, menggunakan push_back untuk menambahkan objek
+    vector<Pesanan> pesanan;
+    pesanan.push_back(Pesanan("001", "Jakarta", "Bandung", "2025-01-05 14:30:00"));
+    pesanan.push_back(Pesanan("002", "Surabaya", "Malang", "2025-01-05 13:00:00"));
+    pesanan.push_back(Pesanan("003", "Medan", "Padang", "2025-01-05 15:00:00"));
+    pesanan.push_back(Pesanan("004", "Yogyakarta", "Solo", "2025-01-05 12:00:00"));
 
     cout << "Data pesanan sebelum diurutkan:\n";
     tampilkanPesanan(pesanan);
